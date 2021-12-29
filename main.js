@@ -1,5 +1,12 @@
 let obj = new SceneObject(0,0, 50, 50);
 
+let inputKeys = {
+    w : false,
+    s : false,
+    a : false,
+    d : false,
+}
+
 class TheGame extends GameLogic{
     directionToRight = true;
     directionToDown = true;
@@ -18,43 +25,70 @@ class TheGame extends GameLogic{
         objY.textContent = "Posição Y de objeto:" + obj.y;
     }
 
-    update = () => {
-        
-        let acelerationForce = 25;
-        let delta = DeltaTime.getDeltaTime();
-        
-        if(this.directionToRight)
-            obj.x = obj.x + acelerationForce * delta;
-        else
-            obj.x = obj.x - acelerationForce * delta;
-    
-    
-        if(this.directionToDown)
-            obj.y = obj.y + (acelerationForce - 15) * delta;
-            else
-            obj.y = obj.y - (acelerationForce - 15) * delta;
+    update = () => {   
+        this.debugData();
+
+        let acelerationForce = 10;
+
+        if(inputKeys.w)
+            obj.y -= acelerationForce;
+
+        if(inputKeys.s)
+            obj.y += acelerationForce;
+
+        if(inputKeys.a)
+            obj.x -= acelerationForce;
+
+        if(inputKeys.d)
+            obj.x += acelerationForce;
+
             
-            this.changeDiretion();
-            this.debugData();
-        }
-        
-        render = () => {
-        obj.draw(this.canvasContext);
     }
 
-    changeDiretion(){
-        if(obj.x < 0)
-            this.directionToRight = true;
-    
-        else if(obj.x > (this.canvas.clientWidth - obj.width))
-            this.directionToRight = false;
-    
-        if(obj.y < 0)
-            this.directionToDown = true;
-        else if(obj.y > (this.canvas.clientHeight - obj.height))
-            this.directionToDown = false;
+    render = () => {
+        obj.draw(this.canvasContext);
     }
     
 }
+
+document.addEventListener('keydown', (event) => {
+    switch(event.key){
+        case 'w':
+            inputKeys.w = true;
+        break;
+
+        case 'd':
+            inputKeys.d = true;
+        break;
+
+        case 'a':
+            inputKeys.a = true;
+        break;
+
+        case 's':
+            inputKeys.s = true;
+        break;
+    }
+});
+
+document.addEventListener('keyup', (event) => {
+    switch(event.key){
+        case 'w':
+            inputKeys.w = false;
+        break;
+
+        case 'd':
+            inputKeys.d = false;
+        break;
+
+        case 'a':
+            inputKeys.a = false;
+        break;
+
+        case 's':
+            inputKeys.s = false;
+        break;
+    }
+});
 
 requestAnimationFrame(new TheGame("glCanvas").run);
