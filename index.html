@@ -1,13 +1,16 @@
 <!Doctype HTML>
 <html lang="pt-BR">
+    <script src="SceneObject.js"></script>
+    <script src="GameLogic.js"></script>
+
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <meta http-equiv="Access-Control-Allow-Origin" content="*">
     <head>
         
         <style>
             canvas {
-                border: 4px solid black;
-                filter: drop-shadow(0 0 10px black);
+                border: 2px solid black;
+                filter: drop-shadow(0 0 10px #000000aa);
             }
             </style>
       
@@ -19,17 +22,14 @@
             <span id="widthCanvas">0</span> <br />
             <span id="heightCanvas">0</span> <br />
             <span id="deltaTime">0</span> <br />
-
+            
             <span id="objX">0</span> <br />
             <span id="objY">0</span> <br />
-
+            
         </div>
         <canvas id="glCanvas" width="640" height="480"></canvas>
         <script src="main.js"></script>
-    <script>
-        main();
-    </script>
-</body>
-
-
-</html>
+    </body>
+    
+    
+    </html>
