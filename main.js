@@ -1,5 +1,5 @@
-let obj = new SceneObject(0,0, 50, 50);
-
+let objT = new SceneObjectRotable(new Vector2D(320,240), 50, 50);
+let obj = new SceneObject(new Vector2D(120,140), 50, 50);
 let inputKeys = {
     w : false,
     s : false,
@@ -27,7 +27,11 @@ class TheGame extends GameLogic{
 
     update = () => {   
         this.debugData();
+        this.inputActions();
+        objT.direction = obj.position;
+    }
 
+    inputActions() {
         let acelerationForce = 10;
 
         if(inputKeys.w)
@@ -37,19 +41,22 @@ class TheGame extends GameLogic{
             obj.position.y += acelerationForce;
 
         if(inputKeys.a)
+            //obj.angle -= 0.1;
             obj.position.x -= acelerationForce;
 
         if(inputKeys.d)
+            //obj.angle += 0.1;
             obj.position.x += acelerationForce;
-
-            
     }
 
     render = () => {
         obj.draw(this.canvasContext);
+        objT.draw(this.canvasContext);
     }
     
 }
+
+let game = new TheGame("glCanvas");
 
 document.addEventListener('keydown', (event) => {
     switch(event.key){
@@ -91,4 +98,9 @@ document.addEventListener('keyup', (event) => {
     }
 });
 
-requestAnimationFrame(new TheGame("glCanvas").run);
+/*game.canvas.addEventListener('mousemove', (event) => {
+    let mousePosition = new Vector2D(event.x, event.y);
+    objT.direction = mousePosition;
+});*/
+
+requestAnimationFrame(game.run);
