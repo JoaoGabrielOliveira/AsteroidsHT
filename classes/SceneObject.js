@@ -1,6 +1,6 @@
 class SceneObject {
     width; height;
-    position;
+    position; angle = 0;
 
     constructor(position, width, height){
         this.position = position;
@@ -10,7 +10,9 @@ class SceneObject {
     }
 
     draw(context) {
-        context.fillRect(this.position.x,this.position.y,this.width, this.height);   
+        context.setTransform(this.width,0,0,this.height,this.position.x,this.position.y);
+        context.rotate(this.angle);
+        context.fillRect(-0.5,-0.5, 1, 1);
     }
 
     setPosition(x, y){
