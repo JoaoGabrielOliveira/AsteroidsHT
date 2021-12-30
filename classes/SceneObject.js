@@ -16,7 +16,9 @@ class SceneObject {
     }
 
     setPosition(x, y){
-        this.position.x = x;
-        this.position.y = y;
+        if(x)
+            this.position.x = x;
+        if(y)
+            this.position.y = y;
     }
 }
