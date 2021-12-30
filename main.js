@@ -21,8 +21,8 @@ class TheGame extends GameLogic{
         widthCanvas.textContent = "Largura: " + this.canvas.clientWidth;
         heightCanvas.textContent = "Altura:" + this.canvas.clientHeight;
         deltaTime.textContent = "DeltaTime:" + DeltaTime.getDeltaTime();
-        objX.textContent = "Posição X de objeto:" + obj.x;
-        objY.textContent = "Posição Y de objeto:" + obj.y;
+        objX.textContent = "Posição X de objeto:" + obj.position.x;
+        objY.textContent = "Posição Y de objeto:" + obj.position.y;
     }
 
     update = () => {   
@@ -31,16 +31,16 @@ class TheGame extends GameLogic{
         let acelerationForce = 10;
 
         if(inputKeys.w)
-            obj.y -= acelerationForce;
+            obj.position.y -= acelerationForce;
 
         if(inputKeys.s)
-            obj.y += acelerationForce;
+            obj.position.y += acelerationForce;
 
         if(inputKeys.a)
-            obj.x -= acelerationForce;
+            obj.position.x -= acelerationForce;
 
         if(inputKeys.d)
-            obj.x += acelerationForce;
+            obj.position.x += acelerationForce;
 
             
     }

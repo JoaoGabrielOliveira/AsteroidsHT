@@ -1,16 +1,24 @@
 class SceneObject {
-    x; y; width; height;
-    
+    width; height;
+    position;
 
-    constructor(xPosition,yPosition, width, height){
-        this.x = xPosition;
-        this.y = yPosition;
+    constructor(position, width, height){
+        this.position = position;
+
+        //this.x = xPosition;
+        //this.y = yPosition;
+
         this.width = width;
         this.height = height;
     }
 
     draw(context) {
-        context.fillRect(this.x,this.y,this.width, this.height);   
+        context.fillRect(this.position.x,this.position.y,this.width, this.height);   
+    }
+
+    setPosition(x, y){
+        this.position.x = x;
+        this.position.y = y;
     }
 }
 
