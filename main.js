@@ -55,6 +55,13 @@ class TheGame extends GameLogic{
     render = () => {
         obj.draw(this.canvasContext);
         objT.draw(this.canvasContext);
+
+        
+        this.canvasContext.setTransform(1,0,0,1,obj.position.x,obj.position.y);
+        this.canvasContext.moveTo(0, 0);    // Move the pen to (30, 50)
+        this.canvasContext.setTransform(1,0,0,1,objT.position.x,objT.position.y);
+        this.canvasContext.lineTo(0,0);  // Draw a line to (150, 100)
+        this.canvasContext.stroke();   
     }
     
 }
