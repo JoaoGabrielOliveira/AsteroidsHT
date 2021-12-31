@@ -41,6 +41,15 @@ class Vector2D {
         let length = this.magnitude();
         return length > 0 ? this.div(m) : 0;
     }
+
+    static distanceBetween(vector1, vector2){
+        //let x = Math.pow(vector1.x - vector2.x);
+        let x = (vector1.x - vector2.x) * (vector1.x - vector2.x);
+        let y = (vector1.x - vector2.x) * (vector1.x - vector2.x);
+        let xy = x + y;
+        //return Math.sqrt(  + Math.pow(vector1.y - vector2.y));
+        return Math.sqrt(xy);
+    }
 }
 
 class DeltaTime {
