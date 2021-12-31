@@ -1,5 +1,5 @@
-let obj = new SceneObject(0,0, 50, 50);
-
+let objT = new SceneObjectRotable(new Vector2D(320,240), 50, 50);
+let obj = new SceneObject(new Vector2D(220,140), 50, 50);
 let inputKeys = {
     w : false,
     s : false,
@@ -17,19 +17,26 @@ class TheGame extends GameLogic{
         let deltaTime = document.getElementById('deltaTime');
         let objX = document.getElementById('objX');
         let objY = document.getElementById('objY');
+        let distence = document.getElementById('distence');
         
         widthCanvas.textContent = "Largura: " + this.canvas.clientWidth;
         heightCanvas.textContent = "Altura:" + this.canvas.clientHeight;
         deltaTime.textContent = "DeltaTime:" + DeltaTime.getDeltaTime();
         objX.textContent = "Posição X de objeto:" + obj.position.x;
         objY.textContent = "Posição Y de objeto:" + obj.position.y;
+        distence.textContent = "Distancia: " + Vector2D.distanceBetween(obj.position, objT.position);
     }
 
     update = () => {   
         this.debugData();
+        this.inputActions();
 
+        objT.lookAt(obj.position);
+        
+    }
+
+    inputActions() {
         let acelerationForce = 10;
-
         if(inputKeys.w)
             obj.position.y -= acelerationForce;
 
@@ -37,19 +44,22 @@ class TheGame extends GameLogic{
             obj.position.y += acelerationForce;
 
         if(inputKeys.a)
+            //obj.angle -= 0.1;
             obj.position.x -= acelerationForce;
 
         if(inputKeys.d)
+            //obj.angle += 0.1;
             obj.position.x += acelerationForce;
-
-            
     }
 
     render = () => {
         obj.draw(this.canvasContext);
+        objT.draw(this.canvasContext);
     }
     
 }
+
+let game = new TheGame("glCanvas");
 
 document.addEventListener('keydown', (event) => {
     switch(event.key){
@@ -91,4 +101,9 @@ document.addEventListener('keyup', (event) => {
     }
 });
 
-requestAnimationFrame(new TheGame("glCanvas").run);
+/*game.canvas.addEventListener('mousemove', (event) => {
+    let mousePosition = new Vector2D(event.x, event.y);
+    objT.direction = mousePosition;
+});*/
+
+requestAnimationFrame(game.run);
