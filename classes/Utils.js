@@ -2,15 +2,82 @@
 class Vector2D {
     x; y;
 
+    /** Bidimensional vector
+     * 
+     * @param {Number} x 
+     * @param {Number} y 
+     */
     constructor(x,y){
         this.x = x;
         this.y = y;
     }
 
-    add(vector){
-        if(vector.x && vector.y){
-            this.x += vector.x;
-            this.x += vector.y;
+    /**Does division operations
+     * 
+     * @param {Vector2D | Number} vector 
+     * @returns {Number}
+     */
+     div(vector){
+        if(vector instanceof Vector2D){
+            let sub = Vector2D.div(this, vector);
+            this.x = sub.x;
+            this.y = sub.y;
+        }
+        else{
+            this.x /= vector;
+            this.y /= vector;
+        }
+        return this;
+    }
+
+    /**Does division operations
+     * 
+     * @param {Vector2D} vector1 
+     * @param {Vector2D} vector2 
+     * @returns 
+     */
+    static div(vector1, vector2){
+        return new Vector2D(vector1.x / vector2.x, vector1.y / vector2.y);
+    }
+
+    /**Does multiplication operations
+     * 
+     * @param {Vector2D | Number} vector 
+     * @returns {Number}
+     */
+     mult(vector){
+        if(vector instanceof Vector2D){
+            let sub = Vector2D.mult(this, vector);
+            this.x = sub.x;
+            this.y = sub.y;
+        }
+        else{
+            this.x *= vector;
+            this.y *= vector;
+        }
+        return this;
+    }
+
+    /**Does multiplication operations
+     * 
+     * @param {Vector2D} vector1 
+     * @param {Vector2D} vector2 
+     * @returns 
+     */
+    static mult(vector1, vector2){
+        return new Vector2D(vector1.x * vector2.x, vector1.y * vector2.y);
+    }
+
+    /**Does addition operations
+     * 
+     * @param {Vector2D | Number} vector 
+     * @returns {Number}
+     */
+     add(vector){
+        if(vector instanceof Vector2D){
+            let sub = Vector2D.add(this, vector);
+            this.x = sub.x;
+            this.y = sub.y;
         }
         else{
             this.x += vector;
@@ -19,16 +86,42 @@ class Vector2D {
         return this;
     }
 
-    div(vector){
-        if(vector.x && vector.y){
-            this.x /= vector.x;
-            this.x /= vector.y;
+    /**Does addition operations
+     * 
+     * @param {Vector2D} vector1 
+     * @param {Vector2D} vector2 
+     * @returns 
+     */
+    static add(vector1, vector2){
+        return new Vector2D(vector1.x + vector2.x, vector1.y + vector2.y);
+    }
+
+    /**Does subtraction operations
+     * 
+     * @param {Vector2D | Number} vector 
+     * @returns {Number}
+     */
+    sub(vector){
+        if(vector instanceof Vector2D){
+            let sub = Vector2D.sub(this, vector);
+            this.x = sub.x;
+            this.y = sub.y;
         }
         else{
-            this.x /= vector;
-            this.y /= vector;
+            this.x -= vector;
+            this.y -= vector;
         }
         return this;
+    }
+
+    /**Does subtraction operations
+     * 
+     * @param {Vector2D} vector1 
+     * @param {Vector2D} vector2 
+     * @returns 
+     */
+    static sub(vector1, vector2){
+        return new Vector2D(vector1.x - vector2.x, vector1.y - vector2.y);
     }
 
     /** Get length between points X and Y*/
@@ -39,7 +132,17 @@ class Vector2D {
     /** Normalize length to 1 */
     normalize(){
         let length = this.magnitude();
-        return length > 0 ? this.div(m) : 0;
+        return length > 0 ? this.div(length) : 0;
+    }
+
+    limit(value){
+        let length = this.magnitude();
+        while(length > value){
+            this.x -= 0.1;
+            this.y -= 0.1;
+            length = this.magnitude();
+        }
+        return this;
     }
 
     static distanceBetween(vector1, vector2){
