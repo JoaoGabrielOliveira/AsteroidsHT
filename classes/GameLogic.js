@@ -1,5 +1,10 @@
 class GameLogic {
-    canvas; canvasContext;
+
+    /** @type {HTMLCanvasElement} */
+    canvas;
+    /** @type {CanvasRenderingContext2D} */
+    canvasContext;
+    frameId;
 
     constructor(elementId) {
         this.canvas = document.getElementById(elementId);
