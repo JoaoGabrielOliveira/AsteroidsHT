@@ -9,6 +9,7 @@ class GameLogic {
     constructor(elementId) {
         this.canvas = document.getElementById(elementId);
         this.canvasContext = this.canvas.getContext("2d");
+        Drawer.context = this.canvasContext;
     }
     update = () => {}
 
