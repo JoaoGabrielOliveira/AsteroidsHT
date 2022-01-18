@@ -1,19 +1,21 @@
 class SceneObjectRotable extends SceneObject {
 
-    constructor(position, width, height){ super(position, width, height) }
+    /** @type {Mesh} */
+    mesh;
+
+    constructor(position, width, height){
+        super(position, width, height);
+        this.mesh = new RectangleMesh(width, height);
+    }
 
     draw(context) {
         context.setTransform(1,0,0,1,this.position.x,this.position.y);
-        context.rotate(this.angle);
-        context.beginPath();
-        context.moveTo(-0.5 * this.width, -0.5 * this.height);
-        context.lineTo(0.5 * this.width, -0.5 * this.height);
-        context.lineTo(0.5 * this.width, 0.5 * this.height);
-        context.lineTo(-0.5 * this.width,0.5 * this.height);
+        this.mesh.draw(context);
         context.fill();
     }
 
     lookAt(vector){
-        this.angle = Math.atan2(this.position.y - vector.y, this.position.x - vector.x);
+        var deltaY = this.position.y - vector.y, deltaX = this.position.x - vector.x;
+        this.angle = Math.atan2(deltaY,deltaX);
     }
 }
