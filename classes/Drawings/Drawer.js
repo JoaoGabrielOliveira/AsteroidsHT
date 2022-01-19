@@ -4,8 +4,8 @@ class Drawer {
     /** @type {HTMLCanvasElement} */
     static canvas;
 
-    /** @type {Array<Mesh>} */
-    static meshPipeline;
+    /** @type {Array<SceneObject>} */
+    static sceneObjectPipeline = [];
 
     /** @param {Vector2D} start @param {Vector2D} end */
     static drawLine(start, end){
@@ -28,8 +28,8 @@ class Drawer {
             Drawer.context.stroke();
     }
 
-    static drawMeshPipeline() {    
-        this.meshPipeline.forEach(mesh => Drawer.drawMesh(mesh));
+    static drawPipeline() {    
+        this.sceneObjectPipeline.forEach(so => so.draw() );
     }
     
     /**
