@@ -2,6 +2,10 @@
 <html lang="pt-BR">
     <script src="classes/SceneObject.js"></script>
     <script src="classes/SceneObjectRotable.js"></script>
+    <script src="classes/Drawings/Drawer.js"></script>
+    <script src="classes/Drawings/Mesh.js"></script>
+    <script src="classes/Drawings/RectangleMesh.js"></script>
+    <script src="classes/Transform.js"></script>
     <script src="classes/GameLogic.js"></script>
     <script src="classes/Utils.js"></script>
 
@@ -26,13 +30,14 @@
             <span id="deltaTime">0</span> <br />
             
             <span id="objX">0</span> <br />
-            <span id="objY">0</span> <br /><br />
-
-            <span id="aceleration">0</span> <br />
+            <span id="objY">0</span> <br />
+            <span id="angle">0</span> <br /><br />
             <span id="distence">0</span> <br />
             
         </div>
-        <canvas id="glCanvas" width="640" height="480"></canvas>
+        <div id="canvas">
+            <canvas id="glCanvas" width="640" height="480"></canvas>
+        </div>
         <script src="main.js"></script>
     </body>
     
