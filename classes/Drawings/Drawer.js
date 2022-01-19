@@ -28,7 +28,7 @@ class Drawer {
             Drawer.context.stroke();
     }
 
-    static drawPipeline() {    
+    static renderPipeline() {    
         this.sceneObjectPipeline.forEach(so => so.draw() );
     }
     
@@ -55,7 +55,7 @@ class Drawer {
             Drawer.strokePath2D(mesh.path2D)
     }
 
-    static clear(){
+    static clearCanvas(){
         Drawer.context.save();
         Drawer.context.setTransform(1, 0, 0, 1, 0, 0);
         Drawer.context.clearRect(0, 0, Drawer.canvas.clientWidth, Drawer.canvas.clientHeight);
