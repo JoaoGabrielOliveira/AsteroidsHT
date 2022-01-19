@@ -1,33 +1,39 @@
 class Mesh {
+    /** @type {boolean} */
     isFill;
+    /** @type {boolean} */
     isStroked;
-    points = [];
+    /** @type {Path2D} */
+    path2D;
     angle;
 
     /**
      * 
      * @param {CanvasRenderingContext2D} context 
      */
-    draw(context){
-        context.beginPath();
-        context.rotate(this.angle);
+    draw(){
+        Drawer.context.beginPath();
+        Drawer.context.rotate(this.angle);
         
-        this.drawObject(context);
+        this.drawObject();
+
+        Drawer.context.closePath();
 
         if(this.isFill)
-            context.fill();
+            Drawer.context.fill();
         if(this.isStroked)
-            context.stroke();
+            Drawer.context.stroke();
     }
 
     /**
      * 
      * @param {CanvasRenderingContext2D} context 
      */
-    drawObject(context){
-        context.moveTo(this.points[0].x, this.points[0].y);
+    drawObject(){
+        Drawer.context.moveTo(this.points[0].x, this.points[0].y);
 
         for(let i = 1; i < this.points.length; i++)
-            context.lineTo(this.points[i].x, this.points[i].y);
+            Drawer.context.lineTo(this.points[i].x, this.points[i].y);
+
     }
 }

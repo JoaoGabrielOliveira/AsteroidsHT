@@ -7,11 +7,11 @@ class RectangleMesh extends Mesh {
         this.width = width;
         this.height = height;
 
-        this.points = [
-            new Vector2D(-0.5 * this.width, -0.5 * this.height),
-            new Vector2D(0.5 * this.width, -0.5 * this.height),
-            new Vector2D(0.5 * this.width, 0.5 * this.height),
-            new Vector2D(-0.5 * this.width,0.5 * this.height)
-        ]
+        this.path2D = new Path2D();
+        this.path2D.moveTo(-0.5 * this.width, -0.5 * this.height);
+        this.path2D.lineTo(0.5  * this.width, -0.5 * this.height);
+        this.path2D.lineTo(0.5  * this.width,  0.5 * this.height);
+        this.path2D.lineTo(-0.5 * this.width,  0.5 * this.height);
+        this.path2D.closePath();
     }
 }
