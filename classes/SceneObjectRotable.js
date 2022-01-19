@@ -1,17 +1,8 @@
 class SceneObjectRotable extends SceneObject {
-
-    /** @type {Mesh} */
-    mesh;
-
     constructor(position, width, height){
         super(position, width, height);
         this.mesh = new RectangleMesh(width, height);
-    }
-
-    draw(context) {
-        context.setTransform(1,0,0,1,this.transform.position.x,this.transform.position.y);
-        this.mesh.draw(context);
-        context.fill();
+        this.mesh.isStroked = true;
     }
 
     lookAt(vector){

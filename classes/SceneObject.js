@@ -6,6 +6,9 @@ class SceneObject {
     /** @type {Transform} */
     transform;
 
+    /** @type {Mesh} */
+    mesh;
+
 
     /** Construct a SceneObject
      * 
@@ -21,19 +24,13 @@ class SceneObject {
 
         this.width = width;
         this.height = height;
+
+        Drawer.sceneObjectPipeline.push(this);
     }
 
-    /**
-     * 
-     * @param {CanvasRenderingContext2D} context 
-     */
-    draw(context) {
-        let deltaX = this.transform.position.x * Math.cos(this.getRadiansAngle()),
-            deltaY = this.transform.position.y * Math.sin(this.getRadiansAngle());
-        
-        context.setTransform(this.width,0,0,this.height,deltaX,deltaY);
-        context.rotate(this.angle);
-        context.fillRect(-0.5,-0.5, 1, 1);
+    draw() {
+        Drawer.context.setTransform(1,0,0,1,this.transform.position.x,this.transform.position.y);
+        Drawer.drawMesh(this.mesh);
     }
 
     getRadiansAngle(){
