@@ -18,7 +18,7 @@ class SceneObject {
      */
 
     constructor(position, width, height){
-        this.transform = new Transform(position)
+        this.transform = new Transform(position, 0)
         this.transform.position = position;
         this.velocity = new Vector2D(0,0);
 
@@ -29,11 +29,6 @@ class SceneObject {
     }
 
     draw() {
-        Drawer.context.setTransform(1,0,0,1,this.transform.position.x,this.transform.position.y);
-        Drawer.drawMesh(this.mesh);
-    }
-
-    getRadiansAngle(){
-        return (Math.PI / 180) * this.angle;
+        Drawer.drawMesh(this.mesh, this.transform);
     }
 }

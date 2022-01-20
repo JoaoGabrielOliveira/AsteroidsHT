@@ -8,6 +8,6 @@ class SceneObjectRotable extends SceneObject {
     lookAt(vector){
         var deltaY = this.transform.position.y - vector.y,
             deltaX = this.transform.position.x - vector.x;
-        this.angle = Math.atan2(deltaY,deltaX);
+        this.transform.angle = Math.atan2(deltaY,deltaX);
     }
 }
