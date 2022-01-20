@@ -16,18 +16,6 @@ class Drawer {
         Drawer.context.stroke();
     }
 
-    static draw(){
-        Drawer.context.beginPath();
-        Drawer.context.rotate(this.angle);
-        
-        this.drawObject();
-
-        if(this.isFill)
-            Drawer.context.fill();
-        if(this.isStroked)
-            Drawer.context.stroke();
-    }
-
     static renderPipeline() {    
         this.sceneObjectPipeline.forEach(so => so.draw() );
     }
@@ -46,9 +34,12 @@ class Drawer {
 
     /**
      * 
-     * @param {Mesh} mesh;
+     * @param {Mesh} mesh @param {Transform} transform
      */
-     static drawMesh(mesh){
+     static drawMesh(mesh, transform){
+        Drawer.context.setTransform(1,0,0,1,transform.position.x, transform.position.y);
+        Drawer.context.rotate(transform.angle);
+
          if(mesh.isFill)
             Drawer.fillPath2D(mesh.path2D);
         if(mesh.isStroked)
