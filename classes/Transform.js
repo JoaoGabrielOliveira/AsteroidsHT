@@ -4,14 +4,19 @@ class Transform {
     /** @type {Number} */
     angle;
 
-    /** @param {Vector2D} position */
-    constructor(position){
+    /**
+     * 
+     * @param  {Vector2D} position Position of transform 
+     * @param  {Vector2D} angle By default start equal zero
+     */
+    constructor(position, angle = 0){
         this.position = position;
+        this.angle = (Math.PI / 180) * angle;
     }
 
     /** @param {Number} angle */
     rotate(angle){
-        this.angle = angle;
+        this.angle += (Math.PI / 180) * angle;
     }
 
     /** @param {Vector2D} vector*/
