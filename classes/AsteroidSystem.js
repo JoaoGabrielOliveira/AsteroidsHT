@@ -1,4 +1,5 @@
 class AsteroidSystem {
+    /** @type {Array<SceneObjectAsteroid>} */
     static asteroids = [];
 
     static makeAsteroids(number, minSize, maxSize){
@@ -13,11 +14,6 @@ class AsteroidSystem {
             asteroidWidth  = mathRandom(minSize.x, maxSize.x),
             asteroidHeight = mathRandom(minSize.y, maxSize.y);
 
-        let asteroid = new SceneObject(new Vector2D(canvasWidth,canvasHeight), asteroidWidth, asteroidHeight);
-
-        asteroid.mesh = new AsteroidMesh(asteroid.width, asteroid.height);
-        asteroid.mesh.isStroked = true;
-
-        return asteroid;
+        return new SceneObjectAsteroid(new Vector2D(canvasWidth,canvasHeight), asteroidWidth, asteroidHeight);;
     }
 }
