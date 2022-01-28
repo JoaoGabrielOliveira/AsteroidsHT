@@ -172,14 +172,18 @@ class Transform {
     position;
     /** @type {Number} */
     angle;
+    /** @typedef {{width:number, height:number}} Size */
+    size;
 
     /**
      * 
      * @param  {Vector2D} position Position of transform 
      * @param  {Vector2D} angle By default start equal zero
+     * @param  {Size} size By default starts with width and height equals 1
      */
-    constructor(position, angle = 0){
+    constructor(position, size = {width:1, height:1}, angle = 0){
         this.position = position;
+        this.size = size;
         this.angle = (Math.PI / 180) * angle;
     }
 

@@ -1,5 +1,4 @@
 class SceneObject {
-    width; height;
     /** @type {Vector2D} */
     velocity;
 
@@ -18,12 +17,8 @@ class SceneObject {
      */
 
     constructor(position, width, height){
-        this.transform = new Transform(position, 0)
-        this.transform.position = position;
+        this.transform = new Transform(position, {width, height}, 0)
         this.velocity = new Vector2D(0,0);
-
-        this.width = width;
-        this.height = height;
 
         Drawer.sceneObjectPipeline.push(this);
     }
