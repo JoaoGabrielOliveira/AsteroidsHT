@@ -196,8 +196,10 @@ class Transform {
     /** @param {Number} x @param {Number} y */
     setPosition(x,y){
         this.position.x = x;
-        this.position.y = x;
+        this.position.y = y;
+
     }
+    
 }
 
 function mathRandom(min, max) {  
